@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+
+
+
+
+*:not(i){
+  font-family: "Cairo", sans-serif;
+}
+
+*::-webkit-scrollbar {
+  display: none !important;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  font-size: 14px !important;
+  direction: rtl !important;
+}
+
+
+
+
+/* start gridstack */
+
+.grid-stack-item {
+  background-color: #f4f4f46b;
+}
+
+@media print{  
+
+  .no-print {
+    display: none !important;
+  }
+  
+  .grid-stack-item {
+    background-color: #eaeaea26;
+  };
+}
+
+
+.grid-stack > .grid-stack-item > .ui-resizable-sw {
+  background-image: none !important;
+}
+.grid-stack > .grid-stack-item > .ui-resizable-se {
+  background-image: none !important;
+}
+.grid-stack > .grid-stack-item > .ui-resizable-ne {
+  background-image: none !important;
+}
+.grid-stack > .grid-stack-item > .ui-resizable-nw {
+  background-image: none !important;
+}
+
+.grid-stack-item:hover,
+.grid-stack-item:active {
+  background-color: #D0D0D0;
+  cursor: pointer;
+}
+
+.grid-stack-item-content {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inset: unset !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  cursor: pointer;
+  user-select: none !important;
+}
+
+
+
+
+/* end gridstack */
+
+
+.par-describtion {
+  padding: 15px 0px;
+  width: 460px;
+  color: #8e8e8e;
+  font-size: 13px;
+  text-align: right;
+}
+
+
+

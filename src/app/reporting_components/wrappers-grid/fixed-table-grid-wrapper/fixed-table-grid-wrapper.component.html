@@ -1,0 +1,31 @@
+<div class="fixedtable-box-container" #Gridstack_item_container id="gridstackItem_container" >
+    <div class="grid-content">
+        <!-- element content text -->
+        <div class="details-report-table">
+            <table class="table-bordered table-hover fixed-table">
+                <thead>
+                    <tr>
+                        <th *ngFor="let row of rows" class="text-center mb-0">{{row}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of itemSource">
+                        <td contenteditable="true" (blur)="fixedTableBlur()" *ngFor="let data of item">{{data}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="icon-container" *ngIf="allowMoving || allowDeleting">
+        <div class="d-flex align-items-center">
+            <!-- delete element icon -->
+            <span class="mx-1 element-remove-icon" (click)="removeWidget()" *ngIf="allowDeleting">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <!-- edit element icon -->
+            <span class="mx-1 element-move-icon" *ngIf="allowMoving">
+                <i class="fa-solid fa-up-down-left-right"></i>
+            </span>
+        </div>
+    </div>
+</div>

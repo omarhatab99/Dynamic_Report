@@ -1,0 +1,38 @@
+.tabs-box-container {
+    margin: 50px 0px;
+}
+
+.tabs-box-container .navs-view-container {
+
+    background-color: aliceblue;
+    border-bottom: 1px solid #DDD;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.tabs-box-container .navs-view-container .nav-item .nav-link {
+    background-color: #CCC;
+    display: inline-block;
+    cursor: pointer;
+    padding: 15px;
+    margin: 0px 0px 0px 10px;
+}
+
+.tabs-box-container .navs-view-container .nav-item .nav-link.active {
+    background-color: #f6f6f6;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+
+.tabs-box-container .tabs-viewer-container {
+    border: 1px solid #DDD;
+    position: relative;
+}
+
+.tabs-box-container .tabs-viewer-container .exportation-btns .pyramid-nested-printing-btn{
+    background-color: #f3f6d9;
+    padding: 5px 10px;
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}

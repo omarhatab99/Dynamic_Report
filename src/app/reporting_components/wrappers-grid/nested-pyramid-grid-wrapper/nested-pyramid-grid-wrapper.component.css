@@ -1,0 +1,147 @@
+/* start table container */
+.handsontable-nested-pyramid-container {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }  
+  .nested-pyramid-handsontable-configuration-container {
+    padding: 10px 5px;
+  }
+  
+  .nested-pyramid-handsontable-configuration-container .configuration-btn {
+    background-color: #f1f1f18a;
+    border: 1px dashed #c4c4c4;
+    padding: 0px 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .nested-pyramid-handsontable-configuration-container .exportPyramidBtn {
+    background-color: #ffe6b247;
+    border: 1px solid #c4c4c4;
+    padding: 0px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* end table container */
+  
+/* start handsontable handling */
+
+::ng-deep .htCore {
+  font-family: "Cairo", sans-serif;
+  font-size: 15px !important;
+  text-align: right !important;
+}
+
+.handsontable-nested-pyramid-container ::ng-deep .handsontable thead th {
+  background-color: #ddffe3 !important;
+  font-weight: 600 !important;
+}
+
+.handsontable-nested-pyramid-container ::ng-deep .handsontable thead .relative {
+  padding: 5px 15px !important;
+  text-align: right !important;
+}
+
+.handsontable-nested-pyramid-container ::ng-deep .handsontable .rowHeader {
+  padding-left: 20px !important;
+}
+
+.handsontable-nested-pyramid-container ::ng-deep .htRowHeaders .htCore td {
+  cursor: cell !important;
+}
+
+.handsontable-nested-pyramid-container ::ng-deep .parent-row.expanded-row > td {
+  position: relative;
+  padding-top: 5px !important;
+  padding-right: 5px !important;
+  text-align: right !important;
+  font-weight: 500 !important;
+  color: #005b9f !important
+}
+
+.handsontable-nested-pyramid-container ::ng-deep .parent-row.collapsed-row > td {
+  vertical-align: middle !important;
+}
+
+.handsontable-nested-pyramid-container ::ng-deep .parent-row.expanded-row > th{
+  background-color: #9dc8f93b !important;
+}
+
+/* ::ng-deep .ht_nestingLevels:not(.ht_nestingParent) {
+  pointer-events: none !important;
+} */
+
+
+.handsontable-nested-pyramid-container ::ng-deep .handsontable th .expande-btn:after {
+  content: "\f103";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #5a89c0;
+  cursor: pointer;
+  z-index: 500 !important;
+}
+
+.handsontable-nested-pyramid-container ::ng-deep .handsontable th .collapse-btn:after {
+  content: "\f100";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #5a89c0;
+  cursor: pointer;
+  z-index: 500 !important;
+}
+
+.handsontable-nested-pyramid-container ::ng-deep .nested-handsontable {
+  padding-bottom:20px;
+  box-sizing: border-box !important;
+  transform: translateX(100%) !important;
+}
+
+
+
+.handsontable-nested-pyramid-container ::ng-deep .handsontable .ht_clone_left {
+  z-index: -1;
+}
+
+.handsontable-nested-pyramid-container ::ng-deep .handsontable .ht_master thead, ::ng-deep.handsontable .ht_master tr th {
+  visibility: visible !important;
+}
+
+
+.handsontable-nested-pyramid-container ::ng-deep .ht_master .wtHolder {
+  overflow: visible !important;
+} 
+
+.handsontable-nested-pyramid-container ::ng-deep .htCenter {
+  text-align: right !important;
+}
+
+
+@media print {
+  .handsontable-nested-pyramid-container ::ng-deep .ht_master .wtHolder .wtHider {
+    height: auto !important;
+  } 
+}
+
+::ng-deep .invisible-state {
+  visibility: hidden !important;
+  height: 0px !important;
+  opacity: 0 !important;
+  padding: 0px !important;
+  transform: translateX(0%) !important;
+}
+
+
+
+
+/* end handsontable handling */

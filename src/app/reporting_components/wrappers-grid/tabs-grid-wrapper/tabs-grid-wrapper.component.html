@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="tabs-box-container" #tabsBoxContainer>
+        <ul class="nav navs-view-container m-0 p-0">
+            <li class="nav-item">
+                <a class="nav-link" (click)="onNormalTab()" [class.active]="tabNumber == 'tab1'">الوضع العادى</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="onPyramidTab()" [class.active]="tabNumber == 'tab2'">الوضع الهرمى</a>
+            </li>
+        </ul>
+
+        <!-- viewer container -->
+        <div class="tabs-viewer-container">
+
+            <app-printing-loader #printingLoader [mode]="loaderMode"></app-printing-loader>
+
+            <!-- sections #1 -->
+            <section *ngIf="tabNumber == 'tab1'" class="overflow-auto">
+                <app-nested-grid-wrapper></app-nested-grid-wrapper>
+            </section>
+
+            <!-- sections #2 -->
+            <section *ngIf="tabNumber == 'tab2'" class="overflow-auto">
+                <div class="nested-grid-section no-print" style="width: 297mm;">
+                    <div class="exportation-btns px-2 py-3 text-right">
+                        <span class="pyramid-nested-printing-btn ml-2" (click)="testPrint()">
+                            طباعه الجدول
+                            <i class="fa-solid fa-print mx-2"></i>
+                        </span>
+                        <span class="pyramid-nested-printing-btn ml-2" (click)="exportExcel()">
+                            استخراج اكسل
+                            <i class="fa-regular fa-file-excel mx-2"></i> 
+                        </span>
+                        <span class="pyramid-nested-printing-btn ml-2" (click)="exportWord()">
+                            استخراج ورد
+                            <i class="fa-regular fa-file-word mx-2"></i> 
+                        </span>
+                    </div>
+                    <app-nested-pyramid-grid-wrapper #nestedPyramidGrid></app-nested-pyramid-grid-wrapper>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<app-prepare-exportation #exportationContainer></app-prepare-exportation>

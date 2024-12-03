@@ -1,0 +1,246 @@
+<!-- start textbox container -->
+<div class="table-box-container" #tableBoxContainer>
+  <div class="data-source-table" #dataSourceTable>
+    <!-- start table container -->
+    <div class="hot-table-container" #hotTableContainer (mousedown)="fixedOverlayColors($event)" id="hotTableContainer" [style]="{paddingTop: hasToolbarAndHyperFormula ? '90px' : '0px'}">
+      <div class="toolbar-hyperformula" #topContainerTable id="topContainerTable"  *ngIf="hasToolbarAndHyperFormula">
+        <!-- toolbar customization -->
+        <div class="toolbar" id="toolbar" [ngStyle]="{'pointer-events':!hyperFormulaTextAreaActive? 'none': 'all'}">
+          <div class="toolbar-font-2 d-flex align-items-center px-2" style="border-left:1px solid #ccc;">
+            <div class="font-family-selection d-inline-block ml-1">
+              <div class="form-group mb-0 pb-0">
+                <select class="form-control mb-0 pb-0" style="padding: 0px 5px; font-size: inherit; height: 30px;"
+                  [(ngModel)]="toolbarCustomize.fontFamily" (input)="changeMetaFontFamily($event)">
+                  <option value="Cairo, sans-serif">Cairo, sans-serif</option>
+                  <option value="Rubik, sans-serif">Rubik', sans-serif</option>
+                  <option value="Amiri, serif">Amiri, serif</option>
+                  <option value="times-new-roman">times-new-roman</option>
+                  <option value="arial">arial</option>
+                </select>
+              </div>
+            </div>
+            <div class="font-size-selection  d-inline-block">
+              <div class="form-group mb-0 pb-0">
+                <select class="form-control mb-0 pb-0" id="fontSizeSelect"
+                  style="padding: 0px 5px; font-size: inherit; height: 30px;" [(ngModel)]="toolbarCustomize.fontSize"
+                  (input)="changeMetaFontSize($event)">
+                  <option value="10">10px</option>
+                  <option value="12">12px</option>
+                  <option value="14">14px</option>
+                  <option value="16">16px</option>
+                  <option value="18">18px</option>
+                  <option value="20">20px</option>
+                  <option value="22">22px</option>
+                  <option value="24">24px</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="toolbar-cell d-flex align-items-center px-2">
+            <div class="background-edit d-inline-block px-2" title="خلفيه الخلايا" style="border-left:1px solid #ccc;">
+              <span class="background-edit-label">تظليل</span>
+              <ngx-colors ngx-colors-trigger [(ngModel)]="toolbarCustomize.backgroundColor"
+                (slider)="applyHighLightColor($event)" (click)="fixedColorPalette()"
+                (input)="changeMetaHighlight($event)"></ngx-colors>
+            </div>
+            <div class="color-edit d-inline-block px-2" title="لون الخط">
+              <span class="color-edit-label">لون الخط</span>
+              <ngx-colors ngx-colors-trigger [(ngModel)]="toolbarCustomize.color" 
+              (slider)="applyFontColor($event)" (click)="fixedColorPalette()" 
+              (input)="changeMetaFontColor($event)"></ngx-colors>
+            </div>
+          </div>
+          <div class="toolbar-font-1 px-2" style="border-left:1px solid #ccc;">
+            <span title="bold" (click)="changeMetaFontBold()" 
+              [class.isPropActive]="toolbarCustomize.isBold">
+              <i class="fa-solid fa-bold"></i>
+            </span>
+            <span title="italic" (click)="changeMetaFontItalic()" 
+              [class.isPropActive]="toolbarCustomize.isItalic">
+              <i class="fa-solid fa-italic"></i>
+            </span>
+            <span title="underline" (click)="changeMetaFontUnderline()"
+              [class.isPropActive]="toolbarCustomize.isUnderline">
+              <i class="fa-solid fa-underline"></i>
+            </span>
+          </div>
+          <div class="toolbar-textalign d-flex align-items-center px-2">
+            <div class="textalign-radio-buttons d-flex">
+              <span class="textalign-right" (click)="changeMetaTextAlign('right')"
+                [class.isPropActive]="toolbarCustomize.textAlign == 'right'">
+                <i class="fa-solid fa-align-right"></i>
+              </span>
+              <span class="textalign-center" (click)="changeMetaTextAlign('center')"
+                [class.isPropActive]="toolbarCustomize.textAlign == 'center'">
+                <i class="fa-solid fa-align-center"></i>
+              </span>
+              <span class="textalign-left" (click)="changeMetaTextAlign('left')"
+                [class.isPropActive]="toolbarCustomize.textAlign == 'left'">
+                <i class="fa-solid fa-align-left"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- hyperformula textarea -->
+        <div class="hyprFormula-textArea-container d-flex align-items-center mt-1 mb-2">
+          <!-- hyperformula textarea options -->
+          <div class="hyprFormula-textArea-controls">
+            <span class="clear-hyperFormula-textarea hyperFormule-control-icon" (click)="clearHyperFormula()"
+              title="تفريغ العمليه">
+              <i class="fa-solid fa-ban"></i>
+            </span>
+            <span class="cancel-hyperFormula-textarea hyperFormule-control-icon" (click)="cancelHyperFormula()"
+              title="اغلاق العمليه">
+              <i class="fa-solid fa-xmark"></i>
+            </span>
+            <span class="save-hyperFormula-textarea hyperFormule-control-icon" (click)="saveHyperFormula()"
+              title="حفظ العمليه">
+              <i class="fa-solid fa-check"></i>
+            </span>
+          </div>
+          <!-- hyperformula textarea input -->
+          <input #hyperFormulaInput class="hyperFormula-textArea mr-2" [disabled]="hyperFormulaTextAreaActive"
+            (keyup)="handlHyperFormulaInputInCaseDelete($event)">
+        </div>
+      </div>
+      <!-- hotTable -->
+      <hot-table [hotId]="hotTableId" [settings]="hotSettings" [language]="language" #hotTable [data]="itemSource"
+        [colHeaders]="itemSource_cols">
+      </hot-table>
+    </div>
+    <div class="aggregate-container p-3" *ngIf="functionSelected.length != 0">
+      <app-aggregate [functions]="functionSelected" [reports]="itemSource_data"></app-aggregate>
+    </div>
+  </div>
+
+  <!-- outside item content -->
+  <p class="table-title" *ngIf="table.title">{{table.title}}</p>
+  <!-- <span class="table-number">{{tableNumber}}</span> -->
+
+  <!-- end table container -->
+  <div class="controls">
+    <!-- show hyperFormula hidden button -->
+    <button hidden="true" id="hyperFormulaHiddenBtn" (click)="doBadOperationOnHyperFormulaTextArea()" class="controls">
+      showHyperFormulaTextArea
+    </button>
+  </div>
+
+</div>
+
+
+<!-- this template will be rendered at report component in spicific place -->
+<ng-template #settings>
+  <div class="table-settings w-100 animate__animated  animate__flipInX">
+    <a class="collabse-btn" data-toggle="collapse" [href]="'#'+settingsId" role="button" aria-expanded="false"
+      aria-controls="collapseExample">
+      <span class="d-inline-block">
+        <span class="table-icon-settings ml-2">
+          <i class="fa-solid fa-table" style="color: #8a8a8a;"></i>
+        </span>
+        اعدادات الجدول
+      </span>
+    </a>
+
+    <div class="collapse" [id]="settingsId">
+      <div class="card card-body">
+        <div class="row">
+          <div class="col-7">
+            <div class="form-group text-right">
+              <input type="text" id="tableTitleChanger" placeholder=" " [(ngModel)]="table.title">
+              <label for="tableTitleChanger">عنوان الجدول</label>
+            </div>
+          </div>
+          <div class="col-5">
+            <!-- export table -->
+            <div class="btn-group">
+              <button type="button" class="export-dropdown" data-toggle="dropdown" aria-expanded="false">
+                استخراج
+                <i class="fa-solid fa-caret-down"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-center text-right">
+                <button class="dropdown-item" type="button" (click)="exportPdf()">استخراج pdf</button>
+                <button class="dropdown-item" type="button" (click)="exportExcel()">استخراج EXCEL</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <hr>
+          </div>
+          <div class="col-12" *ngIf="showRowHeader || showAdvancedEditor || showWordWrap || showScroll">
+            <div class="handsontable-configurations text-right">
+              <div class="mb-2 d-flex align-items-center" *ngIf="showRowHeader">
+                <p-checkbox name="rowheader" [value]="true" [(ngModel)]="table_rowheader"
+                  [disabled]="!enable_rowheader_option" [binary]="true"
+                  (onChange)="onTableRowHeader($event)"></p-checkbox>
+                <p class="mb-0 mx-2"> اظهار ترقيم الصفوف.</p>
+              </div>
+              <div class="mb-2 d-flex align-items-center" *ngIf="showAdvancedEditor">
+                <p-checkbox name="editor" [value]="true" [(ngModel)]="table_editor" [disabled]="!enable_editor_option"
+                  [binary]="true" (onChange)="onTableEditor($event)"></p-checkbox>
+                <p class="mb-0 mx-2"> اظهار التعديل المتقدم والعمليات الحسابيه.</p>
+              </div>
+              <div class="mb-2 d-flex align-items-center"  *ngIf="showWordWrap">
+                <p-checkbox name="wordwrap" [(ngModel)]="table_wordwrap" [disabled]="!enable_wordwrap_option"
+                  [binary]="true" (onChange)="onTableWordwrap($event)"></p-checkbox>
+                <p class="mb-0 mx-2"> تفعيل خاصيه السطر الكامل (wordwrap)</p>
+              </div>
+              <div class="mb-2 d-flex align-items-center"  *ngIf="showScroll">
+                <p-checkbox name="height" [(ngModel)]="table_height" [disabled]="!enable_scroll_option" [binary]="true"
+                  (onChange)="onTableHeight($event)"></p-checkbox>
+                <p class="mb-0 mx-2"> تفعيل خاصيه (scroll)</p>
+              </div>
+              <small class="text-muted mx-2">هذة الخصائص لاتفعل الا فى الوضع الافتراضى.</small>
+            </div>
+          </div>
+          <div class="col-12"  *ngIf="showRowHeader || showAdvancedEditor || showWordWrap || showScroll">
+            <hr>
+          </div>
+          <!-- determine show columns -->
+          <div class="col-12" *ngIf="showSelectedCols">
+            <div class="table-collabse-determine my-2">
+              <label for="showColumns" class="text-right w-100">اختر الاعمدة المراد عرضها</label>
+              <p-multiSelect id="showColumns" [options]="itemSource_options" [(ngModel)]="itemsource_cols_Selected"
+                optionLabel="header" selectedItemsLabel="{0} عدد الاعمدة" [style]="{minWidth: '200px'}"
+                defaultLabel="اختر الاعمدة">
+              </p-multiSelect>
+            </div>
+          </div>
+          <div class="col-12" *ngIf="showSelectedCols"> 
+            <hr>
+          </div>
+          <div class="col-12" *ngIf="showAddFunction">
+            <!-- filter columm -->
+            <div class=" animate__animated animate__headShake table-collabse-filter my-2 ui-rtl text-right" dir="rtl">
+              <button class="btn btn-primary btn-sm mx-1" (click)="createNewFunction()">اضافه داله</button>
+              <div class="function-container-template">
+                <ng-template #functionContainer class="function-container">
+
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="col-12"  *ngIf="showAddFunction">
+            <!-- filter columm -->
+            <div class=" animate__animated animate__headShake table-collabse-filter my-2 ui-rtl text-right" dir="rtl">
+              <div class="function-container-template">
+                <ng-template #functionContainer class="function-container">
+
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="col-12"  *ngIf="allowDeleting">
+            <div class="d-block py-2">
+              <button class="btn btn-outline-danger btn-sm" style="padding: 0px 10px;"
+                (click)="removeTable()">حذف</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</ng-template>
+

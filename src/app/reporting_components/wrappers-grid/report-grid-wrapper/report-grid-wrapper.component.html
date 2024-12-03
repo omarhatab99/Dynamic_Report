@@ -1,0 +1,403 @@
+<!-- start sidenav -->
+<div class="reporting-sidenav">
+    <p-sidebar [(visible)]="_displaySidebar" dir="rtl" [style]="{width:'37em' , zIndex:1000}" position="left"
+        expandIcon="pi pi-fw pi-chevron-right">
+        <div class="sidebar-container">
+            <div class="bootstrap-accordion">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="par-describtion mb-0 px-3" style="width: 400px;">يمكنك التعديل على اى شيئ فى
+                            التقرير سواء
+                            خصائص او معلومات كما يمكنك اضافه الادوات مثل نص او صورة وغيرة
+                            وطباعه التقرير
+                        </p>
+                    </div>
+                    <!-- expansion #1 -->
+                    <div class="col-12">
+                        <!-- start report settings global 1 -->
+                        <div class="report-accordion-settings mb-3" *ngIf="allowReportStyleEditing">
+                            <a class="collabse-btn d-flex justify-content-between align-items-center"
+                                data-toggle="collapse" href="#globalSettings" role="button" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                تخطيط التقرير
+                                <span>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                            </a>
+                            <!-- content collapse 1-->
+                            <div class="collapse" id="globalSettings">
+                                <div class="collapse-content px-3">
+                                    <div class="row">
+                                        <!-- content padding -->
+                                        <div class="col-6">
+                                            <div class="form-group mt-3 mb-2">
+                                                <input type="range" class="form-control-range" value="10"
+                                                    id="paddingContentChanger" [(ngModel)]="reportSettings.padding"
+                                                    min="5" max="100" step="1">
+                                                <label for="paddingContentChanger">حواف المحتوى</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <!-- border radius -->
+                                            <div class="form-group mt-3 mb-1">
+                                                <input type="range" class="form-control-range" id="borderRadiusChanger"
+                                                    [(ngModel)]="reportSettings.border_radius" min="1" max="50"
+                                                    step="1">
+                                                <label for="borderRadiusChanger">منحنى الحدود</label>
+                                            </div>
+                                        </div>
+                                        <!-- border color -->
+                                        <div class="col-6">
+                                            <div class="color-border-edit d-inline-block px-2 mt-1" title="لون الخط">
+                                                <span class="color-border-edit-label">لون الخط</span>
+                                                <ngx-colors ngx-colors-trigger
+                                                    [(ngModel)]="reportSettings.border_color"></ngx-colors>
+                                            </div>
+                                        </div>
+                                        <!-- border width -->
+                                        <div class="col-6">
+                                            <div class="borderWidth-columns-select mb-3">
+                                                <p-dropdown id="borderWidthChanger" [options]="borderSizeOptions"
+                                                    [(ngModel)]="reportSettings.border_size"></p-dropdown>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <hr>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="properties-actions pt-1 pb-3 text-right">
+                                                <button class="btn btn-primary btn-sm"
+                                                    (click)="resetReportProperties()">اعادة القيم
+                                                    الاوليه</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- expansion #2 -->
+                    <div class="col-12" *ngIf="allowAddText || allowAddImage">
+                        <div class="report-accordion-add-tools">
+                            <a class="collabse-btn d-flex justify-content-between align-items-center"
+                                data-toggle="collapse" href="#addTools" role="button" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                اضافه ادوات
+                                <span>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                            </a>
+                            <!-- content collapse 1-->
+                            <div class="collapse" id="addTools">
+                                <div class="collapse-content px-3">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="report-tools p-2 text-right">
+                                                <span class="add-text-box mx-2 add-btn" (click)="showTextDialog()" *ngIf="allowAddText">
+                                                    اضافه نص
+                                                    <i class="fa-solid fa-plus mr-2"></i>
+                                                </span>
+                                                <span class="add-image mx-2 add-btn" (click)="showImageDialog()" *ngIf="allowAddImage">
+                                                    اضافه صورة
+                                                    <i class="fa-solid fa-plus mr-2"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- generate table settings -->
+                    <div class="table-settings col-12 w-100">
+                        <div class="row">
+
+                            <div class="col-12" *ngFor="let template of headerTemplate; let i = index">
+                                <div *ngTemplateOutlet="headerTemplate[i]" class="w-100">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- expansion #3 -->
+                    <div class="col-12">
+                        <hr>
+                        <div class="report-printing">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="printing-container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="prining-title mb-3" style="border-bottom: 1px solid #CCC;">
+                                                    <p class="px-2 py-3 text-right">اعدادات استخراج وطباعه التقرير</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 text-right">
+                                                <div class="modes-options">
+                                                    <div class="mb-2 d-flex align-items-center">
+                                                        <p-radioButton name="screenMode" value="default"
+                                                            [(ngModel)]="selectScreenMode"></p-radioButton>
+                                                        <p class="mb-0 mx-2">الوضع الافتراضى للصفحه</p>
+                                                    </div>
+                                                    <div class="mb-2 d-flex align-items-center">
+                                                        <p-radioButton name="screenMode" value="landscape"
+                                                            [(ngModel)]="selectScreenMode"></p-radioButton>
+                                                        <p class="mb-0 mx-2">الوضع الافقى للصفحه (Landscape)</p>
+                                                    </div>
+                                                    <div class="mb-2 d-flex align-items-center">
+                                                        <p-radioButton name="screenMode" value="portrait"
+                                                            [(ngModel)]="selectScreenMode"></p-radioButton>
+                                                        <p class="mb-0 mx-2">الوضع الرأسى للصفحه (Portrait) </p>
+                                                    </div>
+                                                </div>
+                                                <small class="text-muted">لايمكن طباعه او استخراج التقرير فى الوضع
+                                                    الافتراضى للصفحه.
+                                                </small>
+                                                <hr>
+                                            </div>
+                                            <div class="col-12 text-right">
+                                                <div class="exportation-options mb-1 d-flex align-items-center">
+                                                    <p-dropdown id="exportTypeChanger" [options]="exportTypeOptions"
+                                                        [(ngModel)]="selectExportType"
+                                                        [disabled]="printSettings.screenMode == 'default' || printSettings.paperType.type != 'A4'"></p-dropdown>
+                                                    <button class="btn btn-primary  btn-sm mr-2"
+                                                        [disabled]="printSettings.screenMode == 'default' || printSettings.paperType.type != 'A4'"
+                                                        (click)="exportReport()">استخراج</button>
+                                                </div>
+                                                <small class="text-muted">يجب اختيار نوع الاستخراج الذى تريدة مع التاكد
+                                                    من اختيار وضع الشاشه.</small><br>
+                                                <small class="text-muted">يمكنك فقط استخراج التقرير فى وضع الشاشه
+                                                    A4</small>
+                                                <hr>
+                                            </div>
+                                            <div class="col-12 text-right">
+                                                <div class="paper-size-options mb-2 d-flex align-items-center w-100">
+                                                    <p-dropdown id="paperSizechanger" [options]="paperSizeOptions"
+                                                        [(ngModel)]="selectPaperSize" [disabled]="true"></p-dropdown>
+                                                    <button class="btn btn-primary btn-sm mr-2"
+                                                        [disabled]="printSettings.screenMode == 'default'"
+                                                        (click)="printingReport()">طباعه
+                                                    </button>
+                                                </div>
+                                                <small class="text-muted">اختر نوع الصفحه بما يتناسب مع اوراق الطباعه
+                                                    لديك.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </p-sidebar>
+</div>
+<!-- end sidenav -->
+<!-- sidenav expanding icon -->
+<button class="toggle-reporting-drawer mt-1" (click)="displaySidebar()" color="light" title="تعديل الريبور">
+    <i class="fa-solid fa-gear"></i>
+</button>
+<!-- end sidenav expanding icon -->
+
+<!-- start printing container -->
+<div class="printing-container-manager">
+    <div class="reporting-container paper-handle-size position-relative" id="reporting-container" #printingSection
+        ngxPrintElement>
+        <!-- report loader -->
+        <div class="report-loader d-none" id="reportLoader" #reportLoader>
+            <img id="imgTest" src="../../../assets/report_loader.gif" width="350" alt="loader">
+        </div>
+        <!-- print lines -->
+        <ng-container *ngIf="printSettings.screenMode != 'default'">
+            <div class="print-line" *ngFor="let line of printSettings.numberOfPagesArray; let i = index"
+                [style.top]="(i + 1) * printSettings.pageHeight + 'mm'"></div>
+        </ng-container>
+        <div class="inner-reporting-container" #content id="print-section">
+            <div class="container-fluid">
+                <!-- report header -->
+                <div class="report-header" #cardHeaderReport [style.borderRadius]="reportSettings.border_radius+'px'"
+                    [style.borderColor]="reportSettings.border_color"
+                    [style.borderWidth]="reportSettings.border_size+'px'">
+
+                    <div class="report-header-container d-flex justify-content-start align-items-center  px-3"
+                        id="reportHeaderContainer">
+                        <div class="report-header-data text-center">
+                            <img src="../../../assets/150px-Coat_of_arms_of_Egypt_(on_flag).svg.png" width="30"
+                                class="mb-2 report-image-fixed">
+                            <div class="text-center">
+                                <h4 class="mb-1 text-fixed" style="font-size: 12px;">جمهوريه مصر العربيه</h4>
+                                <h4 class="mb-0 text-fixed" style="font-size: 12px;">وزارة التخطيط والتنميه الاقتصاديه
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="report-content" #cardContentReport [style.padding]="reportSettings.padding+'px'"
+                    [style.borderRadius]="reportSettings.border_radius+'px'"
+                    [style.borderColor]="reportSettings.border_color"
+                    [style.borderWidth]="reportSettings.border_size+'px'">
+                    <!-- start gridstack content-->
+                    <div class="grid-stack grid-stack-content" id="gridstackContent" #gridstack_content_element>
+
+                        <!-- gridstack items -->
+                        <div class="grid-stack-item grid-stack-item-fixedtable"
+                            *ngFor="let widget of widgets_fixedtable_collection; let i = index;" [id]="widget.id">
+                            <div class="grid-stack-item-content">
+                                <app-fixed-table-grid-wrapper [grid_id]="widget.id" [grid_w]="widget.w" [grid_x]="widget.x"
+                                    [grid_y]="widget.y" [rows]="widget.rows"
+                                    [itemSource]="widget.itemSource" [allowMoving]="widget.allowMoving" [allowDeleting]="widget.allowDeleting" [allowDeleting]="widget.allowDeleting">
+                                </app-fixed-table-grid-wrapper>
+                            </div>
+                        </div>
+
+                        <!-- gridstack items -->
+                        <div class="grid-stack-item grid-stack-item-textarea"
+                            *ngFor="let widget of widgets_textarea_collection;" [id]="widget.id">
+                            <div class="grid-stack-item-content">
+                                <app-textarea-grid-wrapper [grid_id]="widget.id" [grid_w]="widget.w" [grid_x]="widget.x"
+                                    [grid_y]="widget.y" [type]="widget.type"
+                                    [grid_content]="widget.content" [allowMoving]="widget.allowMoving" 
+                                    [allowEditing]="widget.allowEditing" [allowDeleting]="widget.allowDeleting">
+                                </app-textarea-grid-wrapper>
+                            </div>
+                        </div>
+
+                        <!-- gridstack items -->
+                        <div class="grid-stack-item grid-stack-item-image"
+                            *ngFor="let widget of widgets_images_collection;" [id]="widget.id">
+                            <div class="grid-stack-item-content">
+                                <app-image-grid-wrapper [grid_id]="widget.id" [grid_w]="widget.w" [grid_x]="widget.x"
+                                    [grid_y]="widget.y" [url]="widget.url" [allowMoving]="widget.allowMoving" 
+                                    [allowEditing]="widget.allowEditing" [allowDeleting]="widget.allowDeleting">
+                                </app-image-grid-wrapper>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end gridstack content -->
+                    <!-- start handsontable-outer-container-->
+                    <div class="handsontable-outer-container mt-3">
+                        <div class="handsontable-main">
+                            <!-- <app-tabs-wrapper></app-tabs-wrapper> -->
+                            <!-- <app-nested-grid-wrapper></app-nested-grid-wrapper> -->
+                             <!-- <app-nested-handsontable-test></app-nested-handsontable-test> -->
+                            <app-table-grid-wrapper></app-table-grid-wrapper>
+                        </div>
+                    </div>
+                    <!-- end handsontable-outer-container -->
+                </div>
+
+                <!-- report header -->
+                <div class="report-footer d-flex justify-content-start align-items-center" #cardFooterReport
+                    [style.borderRadius]="reportSettings.border_radius+'px'"
+                    [style.borderColor]="reportSettings.border_color"
+                    [style.borderWidth]="reportSettings.border_size+'px'">
+
+                    <div class="report-footer-container d-flex justify-content-start align-items-center px-3"
+                        id="reportFooterContainer">
+                        <div
+                            class="report-footer-data text-center d-flex flex-column justify-content-center align-items-start">
+                            <p class="mb-1 font-weight-bold">تاريخ التقرير</p>
+                            <p class="mb-0">{{dateNow}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end printing container -->
+
+<!-- start watermark -->
+<div class="watermark" *ngIf="enableWaterMark">
+    <h2 class="watermark-username">عمر عبدالمنعم عبدالعزيز</h2>
+</div>
+<!-- end watermark -->
+
+<!-- dialogs -->
+<!-- text dialog -->
+<p-dialog [(visible)]="showDialogText" #textAreaDialog [rtl]="true" closeIcon="" appendTo="body"
+    [style]="{width: '700px' , zIndex:1000}">
+    <p-header>
+        <p class="mb-0">اضافه النص</p>
+    </p-header>
+    <div class="dialog-content overflow-hidden">
+        <div class="row">
+            <div class="col-12">
+                <div class="editor-container p-2">
+                    <angular-editor [config]="editorConfig" [placeholder]="'اكتب هنا ماتريد...'"
+                        [(ngModel)]="value"></angular-editor>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <button type="button" class="btn btn-primary btn-sm" [disabled]="value == ''" (click)="saveTextBox()">
+            اضافه
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="closeTextDialog()">تجاهل</button>
+    </p-footer>
+</p-dialog>
+
+<!-- image dialog -->
+<p-dialog [(visible)]="showDialogImage" #imageDialog [rtl]="true" closeIcon=""
+    [style]="{ width: '700px', zIndex: 1000 }">
+    <p-header>
+        <p class="mb-0">اضافه صورة</p>
+    </p-header>
+    <div class="dialog-content overflow-hidden">
+        <div class="row">
+            <div class="col-12 pt-1 pb-2 px-3" style="width: 350px">
+                <div class="par-describtion">
+                    يمكنك اضافه صورة او عمل لها سحبها الى المربع فى الاعلى كما يمكنك
+                    التعديل عليها واستخدام بعض الخصائص مثل قص الصورة
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="upload-image-container d-flex justify-content-between align-items-center p-2">
+                    <div class="image-preview-container d-flex align-items-center justify-content-center"
+                        style="border: 2px solid #DDD !important; width: 30%; height: 170px;">
+                        <img class="image-preview" #imagePreview [src]="imageUrl" title="placeholder" width="80%"
+                            height="80%">
+                    </div>
+                    <div class="upload-image-box d-flex justify-content-center align-items-center flex-column">
+                        <div class="upload-input mb-2">
+                            <label class="upload-image-label btn btn-primary" for="upload-image-input">تحميل
+                                الصورة</label>
+                            <input #inputUploadImage (input)="onUpdate(inputUploadImage.files)" [hidden]="true"
+                                type="file" id="upload-image-input" accept="jpeg , png , jpg">
+                        </div>
+                        <div class="text-warning-small mb-2">
+                            <small class="text-muted">غير مسموح بتحميل اكتر من صورة.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <button type="button" class="btn btn-primary btn-sm" [disabled]="!imageUploaded" (click)="saveImage()">
+            اضافه
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="closeImageDialog()">
+            تجاهل
+        </button>
+    </p-footer>
+</p-dialog>
+
+<!-- exportation sidenav -->
+<div class="exportation">
+    <p-sidebar [(visible)]="_displayExportation" [visible]="false" [fullScreen]="true"
+        (onHide)="hideExportationSidebar()">
+        <div class="container-fluid">
+            <div class="export-container">
+                <app-exportation #exportationPreview [exportSection]="printingSection"
+                    [pageType]="printSettings.paperType.type" [screenMode]="printSettings.screenMode"
+                    [operation]="'pdf'"></app-exportation>
+            </div>
+        </div>
+    </p-sidebar>
+</div>

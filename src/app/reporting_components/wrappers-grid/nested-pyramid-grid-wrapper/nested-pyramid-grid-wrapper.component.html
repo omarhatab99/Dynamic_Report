@@ -1,0 +1,19 @@
+<div class="handsontable-nested-pyramid-container" #handsontableNestedContainer>
+
+    <div class="nested-pyramid-handsontable-configuration-container text-right no-print" *ngIf="showHandsontableConfiguration">
+
+        <span class="configuration-btn mx-1" (click)="nestedOptionsDialogDisplay()">
+            <span class="mx-2">
+                <i class="fa-solid fa-gear"></i>
+            </span>
+            اعدادات الجدول
+        </span>
+
+    </div>
+
+    <div class="hotinstance-test handsontable-nestedPyramid" #targetSection>
+        <hot-table [hotId]="handsontableSettings.handsontable_id" [settings]="handsontableSettings.hotSettings"
+            [language]="handsontableSettings.language" [data]="handsontableSettings.itemSource"
+            [colHeaders]="handsontableSettings.rowHeader" #hotTable></hot-table>
+    </div>
+</div>

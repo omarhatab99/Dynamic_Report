@@ -1,0 +1,19 @@
+div , p , h1 , h2 , h3 , h4 , h5 , h6 , span , small , a , button , select , option , ul , li ::ng-deep .ui-dropdown-item ,
+ ::ng-deep .ui-dropdown-items , ::ng-deep .ui-dropdown-label , ::ng-deep .ui-multiselect-label , ::ng-deep .ng-star-inserted{
+    font-family: "Cairo", sans-serif;
+}
+
+.aggregate-table {
+    display: block;
+    width: 100%;
+    direction: rtl;
+}
+
+.aggregate-table th , td {
+    padding: 10px;
+    border: 1px dashed #555;
+}
+
+.aggregate-table caption {
+    display: block;
+}

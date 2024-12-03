@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="exportation-section" #mainExportContainer>
+        <div class="testing" #containerOfDivs>
+            <div class="export-div position-relative" #exportDiv [style.width]="width" [style.height]="height"
+                *ngFor="let page of numberOfPagesArray">
+                <div class="page-none-event">{{operation == 'pdf' ? 'استخراج التقرير...' : 'طباعه التقرير...'}}</div>
+                <div class="export-div-container" #exportDivContainer style="width: 100%; height: 100%;">
+                    <div class="export-div-content" data-filled="empty" #exportDivContent
+                        style="width: 100%; height: 100%;">
+
+                    </div>
+                    <!-- start watermark -->
+                    <div class="watermark" *ngIf="enableWaterMark">
+                        <h2 class="watermark-username">{{watermarkText}}</h2>
+                    </div>
+                    <!-- end watermark -->
+
+                    <div class="div-footer d-flex align-items-center justify-content-between px-3">
+                        <small>رقم الصفحه <span class="text-success numberOfCurrentPage">10</span> من <span
+                        class="text-secondary numberOfAllPage">1</span></small>
+                        <small>تمت الطباعه بواسطه : {{watermarkText}}</small>
+                        <small>تاريخ الطباعه : <span class="print-date">{{dateNow}}</span></small>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

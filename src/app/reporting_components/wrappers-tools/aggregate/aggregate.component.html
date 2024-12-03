@@ -1,0 +1,16 @@
+<div class="text-right">
+
+    <table class="aggregate-table" *ngFor="let function of functions">
+        <caption class="text-right" style="caption-side:top">خصائص {{function.column}}:</caption>
+        <thead>
+            <tr>
+                <th *ngFor="let data of function.functions">{{data.label}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td *ngFor="let data of function.functions">{{data.value}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

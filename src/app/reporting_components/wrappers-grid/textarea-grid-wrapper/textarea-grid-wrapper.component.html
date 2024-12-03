@@ -1,0 +1,54 @@
+<div class="text-box-container" #Gridstack_item_container id="gridstackItem_container">
+    <div class="grid-content">
+        <h5 *ngIf="type == 0" contenteditable="true" #textArea class="text-editable"
+            style="text-decoration: underline;" (blur)="textAreaBlur()">{{grid_content}}</h5>
+        <h3 *ngIf="type == 1" contenteditable="true" #textArea class="text-editable"
+            style="text-decoration: underline;"  (blur)="textAreaBlur()">{{grid_content}}</h3>
+        <h4 *ngIf="type == 2" contenteditable="true" #textArea class="text-editable"
+            style="text-decoration: underline;"  (blur)="textAreaBlur()">{{grid_content}}</h4>
+        <h6 *ngIf="type == 3" contenteditable="true" #textArea class="text-editable"
+            style="text-decoration: underline;"  (blur)="textAreaBlur()">{{grid_content}}</h6>
+        <div *ngIf="type == 4" contenteditable="true" #textArea class="text-editable"  (blur)="textAreaBlur()">{{grid_content}}</div>
+    </div>
+    <div class="icon-container" *ngIf="allowMoving || allowEditing || allowDeleting">
+        <div class="d-flex align-items-center">
+            <!-- delete element icon -->
+            <span class="mx-1 element-remove-icon" (click)="removeWidget()" *ngIf="allowDeleting">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <!-- edit element icon -->
+            <span class="mx-1 element-text-edit-icon" (click)="showTextDialog()" *ngIf="allowEditing">
+                <i class="fa-solid fa-pencil"></i>
+            </span>
+            <!-- edit element icon -->
+            <span class="mx-1 element-move-icon" *ngIf="allowMoving">
+                <i class="fa-solid fa-up-down-left-right"></i>
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- text dialog -->
+<p-dialog [(visible)]="showDialogText" #textAreaDialog [rtl]="true" closeIcon="" appendTo="body"
+    [style]="{width: '700px' , zIndex:100000}">
+    <p-header>
+        <p class="mb-0">تعديل النص</p>
+    </p-header>
+    <div class="dialog-content overflow-hidden">
+        <div class="row">
+            <div class="col-12">
+                <div class="editor-container p-2">
+                    <angular-editor [config]="editorConfig" [placeholder]="'اكتب هنا ماتريد...'"
+                        [(ngModel)]="value"></angular-editor>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <button type="button" class="btn btn-warning btn-sm"
+            [disabled]="value == ''" (click)="saveTextBox()">
+            تعديل
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="closeTextDialog()">تجاهل</button>
+    </p-footer>
+</p-dialog>

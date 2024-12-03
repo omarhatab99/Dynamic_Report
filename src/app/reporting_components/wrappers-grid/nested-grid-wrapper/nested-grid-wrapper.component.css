@@ -1,0 +1,159 @@
+/* start table container */
+.handsontable-nested-container {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.nested-handsontable-configuration-container {
+  padding: 10px 5px;
+}
+
+.nested-handsontable-configuration-container .configuration-btn {
+  background-color: #f1f1f18a;
+  border: 1px dashed #c4c4c4;
+  padding: 0px 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nested-handsontable-configuration-container .pyramid-btn {
+  background-color: #f1f1f18a;
+  border: 1px dashed #c4c4c4;
+  padding: 0px 5px;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+/* end table container */
+
+/* start handsontable handling */
+
+::ng-deep .htCore {
+  font-family: "Cairo", sans-serif;
+  font-size: 16px !important;
+  text-align: right !important;
+}
+
+.handsontable-nested-container ::ng-deep .handsontable thead th {
+  background-color: #ddffe3 !important;
+  font-weight: bold;
+}
+
+.handsontable-nested-container ::ng-deep .handsontable thead .relative {
+  padding: 5px 5px !important;
+}
+
+.handsontable-nested-container ::ng-deep .handsontable .rowHeader {
+  padding-left: 20px !important;
+}
+
+.handsontable-nested-container ::ng-deep .htRowHeaders .htCore td {
+  cursor: cell !important;
+}
+
+.handsontable-nested-container ::ng-deep .parent-row.expanded-row > td {
+  position: relative;
+  border-top: 1px solid #999 !important;
+  border-bottom: 1px solid #999 !important;
+  padding-right: 30px !important;
+  text-align: right !important;
+  font-weight: bold !important;
+  font-size: 15px !important;
+  color: #727271 !important;
+}
+
+.handsontable-nested-container ::ng-deep .parent-row.collapsed-row > td {
+  vertical-align: middle !important;
+}
+
+
+.handsontable-nested-container ::ng-deep .parent-row.expanded-row > td::before {
+  content: "\f100";
+  font-family: "Font Awesome 5 Free";
+  font-size: 12px;
+  color: #8b8b8b;
+  position: absolute;
+  right: 10px;
+
+}
+
+.handsontable-nested-container ::ng-deep .parent-row.expanded-row > th{
+  background-color: #9dc8f93b !important;
+  border-top: 1px solid #999 !important;
+  border-bottom: 1px solid #999 !important;
+}
+
+/* ::ng-deep .ht_nestingLevels:not(.ht_nestingParent) {
+  pointer-events: none !important;
+} */
+
+
+.handsontable-nested-container ::ng-deep .handsontable th .expande-btn:after {
+  content: "\2b";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #5a89c0;
+  cursor: pointer;
+  z-index: 500 !important;
+}
+
+.handsontable-nested-container ::ng-deep .handsontable th .collapse-btn:after {
+  content: "\f068";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #5a89c0;
+  cursor: pointer;
+  z-index: 500 !important;
+}
+
+.handsontable-nested-container ::ng-deep .nested-handsontable {
+  box-sizing: border-box !important;
+  /* float: inline-end !important; */
+  padding: 20px;
+  transform: translateX(100%) !important;
+
+}
+
+.handsontable-nested-container ::ng-deep .handsontable .ht_clone_left {
+  z-index: -1;
+}
+
+.handsontable-nested-container ::ng-deep .handsontable .ht_master thead, ::ng-deep.handsontable .ht_master tr th {
+  visibility: visible !important;
+}
+
+
+.handsontable-nested-container ::ng-deep .ht_master .wtHolder {
+  overflow: visible !important;
+} 
+
+/* .handsontable-nested-container ::ng-deep .handsontableInputHolder {
+  z-index: 99999 !important;
+} */
+
+::ng-deep .invisible-state {
+  visibility: hidden !important;
+  height: 0px !important;
+  opacity: 0 !important;
+  padding: 0px !important;
+  transform: translateX(0%) !important;
+}
+
+/* end handsontable handling */
+
+
+
+
+

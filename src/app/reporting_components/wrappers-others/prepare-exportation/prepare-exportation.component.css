@@ -1,0 +1,54 @@
+.application-exportation-placeholder {
+    background-color: aliceblue;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 1000vh;
+    z-index: 9999999;
+}
+
+
+/* handle exportation normal section */
+.application-exportation-placeholder .exportation-normal-section .exportation-container {
+    /* padding: 10px; */
+    background-color: #fbfcfb;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.application-exportation-placeholder .exportation-normal-section .exportation-container .close-exportation {
+    font-size: 18px;
+    color: #a4a4a4;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin: 10px;
+}
+.application-exportation-placeholder .exportation-normal-section .exportation-container .close-exportation:hover {
+    color: #000;
+    transition: all 0.2s;
+}
+
+.application-exportation-placeholder .exportation-normal-section .exportation-container .exportation-placeholder-content {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+}
+
+
+/* handle component in case of printing */
+@media print {
+    
+    @page {
+        size: A4 landscape;
+        margin: 10px !important;
+    }
+
+    .application-exportation-placeholder {
+        height: auto !important;
+    }
+
+    .application-exportation-placeholder .exportation-placeholder-content .placeholder-content {
+        padding: 10px !important;
+    }
+}

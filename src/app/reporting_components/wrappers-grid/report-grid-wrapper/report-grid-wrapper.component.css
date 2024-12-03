@@ -1,0 +1,393 @@
+/* start sidenav */
+.toggle-reporting-drawer {
+    position: fixed;
+    left: 0%;
+    top: 20%;
+    border-radius: 0px 4px 4px 0px !important;
+    z-index: 999;
+    padding: 7px 10px;
+    border: none;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.reporting-sidenav .collabse-btn {
+    display: block;
+    border: none;
+    outline: none;
+    width: 98%;
+    padding: 12px;
+    background-color: #FFF;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 10px auto;
+    border-radius: 5px;
+    text-align: right;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+
+
+.reporting-sidenav .collapse {
+    padding: 4px;
+}
+
+.reporting-sidenav .collapse-content {
+    border: 1px solid #e7e7e7;
+}
+
+.reporting-sidenav .color-border-edit {
+    padding: 5px;
+    display: flex !important;
+    align-items: center;
+    gap: 60px;
+    margin-left: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+
+.reporting-sidenav .report-printing {
+    border: 1px solid #e4e4e4;
+    padding: 0px 10px;
+}
+
+
+.reporting-sidenav .report-tools .add-btn {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px dashed #555;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: all 0.2s ease;
+}
+
+.reporting-sidenav .report-tools .add-btn:active {
+    background-color: #d0d0d0;
+}
+
+.reporting-sidenav .report-tools .add-btn.add-table {
+    background-color: #d0d0d06b;
+    pointer-events: none !important;
+}
+
+.reporting-sidenav .report-tools .add-btn.add-table:hover {
+    cursor: not-allowed !important;
+}
+
+/* end sidenav */
+
+
+/*start gridstack content*/
+
+.grid-stack.grid-stack-tables {
+    border-top: 1px solid #ddd;
+}
+
+/* end gridstack content */
+/*start reporting container*/
+.report-loader{
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media print {
+    .report-loader{
+        display: none !important;
+    }
+}
+
+.print-line {
+    position: absolute;
+    top: 0mm;
+    left: 0px;
+    width: 100%;
+    border: 1px dashed #116fbf87;
+    z-index: 990;
+}
+
+.printing-container-manager {
+    background-color: #e6e6e6;
+    padding: 50px 100px;
+    overflow: auto;
+}
+
+.reporting-container {
+    position: relative;
+    background-color: #FFF;
+    overflow: hidden !important;
+    margin: 40px auto !important;
+    padding: 30px 0px;
+    transition: width 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.reporting-container .report-header,
+.reporting-container .report-content,
+.reporting-container .report-footer {
+    border: 1px dashed #000;
+    border-radius: 10px;
+    position: relative;
+    min-height: 80px;
+    padding: 10px;
+    margin-bottom: 15px;
+
+}
+
+@media print {
+
+    .printing-container-manager {
+        padding: 0px 0px;
+    }
+
+    .reporting-container {
+        border: none;
+        padding: 10px 0px;
+    }
+
+    .print-line {
+        display: none !important;
+    }
+
+    .reporting-container .report-content
+    {
+        border: none;
+    }
+}
+
+
+.paper-handle-size {
+    width: 100%;
+    margin: 0px auto !important;
+    transition: width 0.3s ease;
+}
+
+
+.watermark{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 990;
+}
+
+.watermark h2 {
+    font-size: 70px;
+    font-weight: bold;
+    color: #00000026;
+    transform: rotate(-45deg);
+}
+
+
+.export-container {
+    background-color: #dddddd38;
+    border: 1px solid #ccc;
+}
+
+.exportation-options {
+    direction: rtl !important;
+    text-align: right;
+}
+
+/*end reporting container*/
+
+
+.icon-container {
+    background-color: #eaeaea;
+    border: 1px solid #CCC;
+    position: absolute;
+    opacity: 0;
+    transition: all 0.4s linear;
+    padding: 5px;
+    border-radius: 0px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 1000;
+}
+
+.icon-container .element-remove-icon,
+.icon-container .element-edit-icon,
+.icon-container .element-move-icon {
+    font-size: 11px;
+    width: 18px;
+    height: 18px;
+    border: 1px dashed #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.icon-container .element-edit-icon {
+    background-color: #ecfc7369;
+}
+
+.icon-container .element-remove-icon {
+    background-color: #fe7a7a70;
+}
+
+
+.icon-container .element-move-icon:hover {
+    background-color: #dcffd0;
+    display: block;
+}
+
+/* start primeng */
+.printing-container ::ng-deep .ui-dropdown {
+    width: 265px !important;
+}
+
+/* end primeng */
+
+/* start edit angular editor */
+.editor-container {
+    background-color: #FFF;
+}
+
+::ng-deep .angular-editor-wrapper .angular-editor-textarea {
+    min-height: 200px !important;
+    resize: none !important;
+    outline: none !important;
+    border: 1px dashed #d0d0d0 !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+::ng-deep .angular-editor-wrapper {
+    direction: rtl !important;
+}
+
+::ng-deep .angular-editor-toolbar {
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+::ng-deep .angular-editor-toolbar .select-font {
+    width: 150px !important;
+}
+
+/* end edit angular editor */
+/*start dialog*/
+::ng-deep .ui-dialog-titlebar {
+    text-align: right;
+}
+
+::ng-deep .ui-dialog-content {
+    background-color: antiquewhite !important;
+}
+
+
+::ng-deep .ui-dialog-footer {
+    direction: rtl;
+}
+
+/*end dialog*/
+
+/*start image dialog*/
+
+.upload-image-container {
+    gap: 15px;
+}
+
+.upload-image-container .upload-image-box {
+    background-color: #FFF;
+    border: 1px dashed #DDD;
+    width: 70%;
+    height: 170px;
+}
+
+/*end image dialog*/
+
+/* start shared components */
+
+.par-describtion {
+    padding: 15px 0px;
+    width: 460px;
+    color: #8e8e8e;
+    font-size: 13px;
+    text-align: right;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+    direction: rtl;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    direction: rtl;
+}
+
+.form-group label {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    font-size: 14px;
+    color: #777;
+    transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.form-group input:focus+label,
+.form-group input:not(:placeholder-shown)+label {
+    top: -10px;
+    font-size: 12px;
+    color: #007bff;
+    background-color: #ffffff;
+    padding: 0 4px;
+    border-radius: 4px;
+    right: 8px;
+}
+
+/* end shared components */
+
+
+/* start child components*/
+
+::ng-deep app-table-grid-wrapper {
+    width: 100% !important;
+}
+
+::ng-deep app-text-area-grid-wrapper {
+    width: 100% !important;
+}
+
+/* ::ng-deep .table-container {
+    width: 100% !important;
+} */
+
+/* end child components */
+/*start sweet alert*/
+
+/*end sweet alert*/
+
+@media print {
+    .printing-container-manager {
+        display: none;
+    }
+} 

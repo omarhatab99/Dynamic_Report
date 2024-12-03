@@ -1,0 +1,67 @@
+<div class="image-box-container" #Gridstack_item_container id="gridstackItem_container">
+    <div class="grid-content" style="width: 100% !important; height: 100% !important;">
+        <img class="report-image-dynamic" #image [src]="url" style="width: 100% !important; height: 100% !important;">
+    </div>
+    <div class="icon-container" *ngIf="allowMoving || allowEditing || allowDeleting">
+        <div class="d-flex align-items-center">
+            <!-- delete element icon -->
+            <span class="mx-1 element-remove-icon" *ngIf="allowDeleting">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <!-- edit element icon -->
+            <span class="mx-1 element-image-edit-icon" (click)="showImageDialog()" *ngIf="allowEditing">
+                <i class="fa-solid fa-pencil"></i>
+            </span>
+            <!-- edit element icon -->
+            <span class="mx-1 element-move-icon" *ngIf="allowMoving">
+                <i class="fa-solid fa-up-down-left-right"></i>
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- image dialog -->
+<p-dialog [(visible)]="showDialogImage" #imageDialog [rtl]="true" closeIcon="" appendTo="body" 
+    [style]="{ width: '700px', zIndex: 1000 }">
+    <p-header>
+        <p class="mb-0">تعديل الصورة</p>
+    </p-header>
+    <div class="dialog-content overflow-hidden">
+        <div class="row">
+            <div class="col-12 pt-1 pb-2 px-3" style="width: 350px">
+                <div class="par-describtion">
+                    يمكنك اضافه صورة او عمل لها سحبها الى المربع فى الاعلى كما يمكنك
+                    التعديل عليها واستخدام بعض الخصائص مثل قص الصورة
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="upload-image-container d-flex justify-content-between align-items-center p-2">
+                    <div class="image-preview-container d-flex align-items-center justify-content-center"
+                        style="border: 2px solid #DDD !important; width: 30%; height: 170px;">
+                        <img class="image-preview" #imagePreview [src]="imageUrl" title="placeholder" width="80%"
+                            height="80%">
+                    </div>
+                    <div class="upload-image-box d-flex justify-content-center align-items-center flex-column">
+                        <div class="upload-input mb-2">
+                            <label class="upload-image-label btn btn-primary" for="upload-image-input">تحميل
+                                الصورة</label>
+                            <input #inputUploadImage (input)="onUpdate(inputUploadImage.files)" [hidden]="true"
+                                type="file" id="upload-image-input" accept="jpeg , png , jpg">
+                        </div>
+                        <div class="text-warning-small mb-2">
+                            <small class="text-muted">غير مسموح بتحميل اكتر من صورة.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <button type="button" class="btn btn-warning btn-sm" [disabled]="!imageUploaded" (click)="saveImage()">
+            تعديل
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="closeImageDialog()">
+            تجاهل
+        </button>
+    </p-footer>
+</p-dialog>

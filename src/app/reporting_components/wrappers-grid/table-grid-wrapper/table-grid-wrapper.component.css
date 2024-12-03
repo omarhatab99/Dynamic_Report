@@ -1,0 +1,461 @@
+/* :root {
+  --cell-color: #000;
+  --cell-background: #FFF;
+} */
+
+/* start table container */
+.table-box-container {
+  width: 100% !important;
+  margin-top: 10px !important;
+  margin-bottom: 30px !important;
+  padding: 0px 10px;
+  position: relative;
+}
+
+
+.table-box-container .table-title {
+  width: fit-content;
+  padding: 5px 7px;
+  background-color: antiquewhite;
+  border-radius: 5px 0px 0px 0px;
+  margin-bottom: 0px;
+  position: absolute;
+  right: 9px;
+  top: -32px;
+  color: #555;
+}
+
+.table-box-container .hot-table-container {
+  background-color: #edededc9;
+  padding-top: 90px; 
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  
+}
+
+@media print{
+  .table-box-container .hot-table-container {
+    padding-top: 0px !important;
+  }
+  
+}
+
+
+/*start toolbar and hyperformula*/
+.toolbar-hyperformula {
+  position: absolute;
+  top: 0px !important;
+  left: 0px !important;
+  right: 0px !important;
+  padding: 5px;
+  transform: translateY(-90px);
+}
+
+/* toolbar */
+.toolbar {
+  background-color: #FFF;
+  display: flex;
+  position: relative;
+  padding: 7px 0px;
+  justify-content: start;
+  align-items: center;
+  border: 1px solid #DDD;
+}
+
+.toolbar .toolbar-font-1 span {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  border-radius: 5px;
+  margin-right: 5px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+
+}
+
+.toolbar .toolbar-font-1 span:active {
+  background-color: #b7b6b6;
+  /* Darker Shade */
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.isPropActive {
+  background-color: rgb(160 255 160 / 34%) !important
+}
+
+.toolbar-textalign .textalign-radio-buttons {
+  background-color: #FFF;
+  display: flex !important;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.toolbar-textalign .textalign-radio-buttons span {
+  font-size: 17px;
+  padding: 1px 7px;
+  color: #949494;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+
+}
+
+.toolbar-textalign .textalign-radio-buttons span:active {
+  background-color: #b7b6b6;
+  /* Darker Shade */
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.background-edit,
+.color-edit {
+  display: flex !important;
+  align-items: center;
+  gap: 5px;
+  margin-left: 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+/* hyperformula */
+.hyperFormula-textArea {
+  background-color: #FFF;
+  border: 1px solid #cfcfcf;
+  width: 93%;
+  height: 30px;
+  resize: none;
+  padding: 0px 10px;
+  font-size: 12px;
+}
+
+.hyprFormula-textArea-controls {
+  background-color: #FFF;
+  border: 1px solid #cfcfcf;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hyperFormule-control-icon {
+  font-size: 11px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  transition: box-shadow 0.2s;
+}
+
+.hyperFormule-control-icon.clear-hyperFormula-textarea {
+
+  background-color: rgb(255 163 163 / 21%);
+  color: rgb(193 6 6);
+}
+
+.hyperFormule-control-icon.cancel-hyperFormula-textarea {
+
+  background-color: rgb(195 203 255 / 21%);
+  color: rgb(55 118 190);
+}
+
+.hyperFormule-control-icon.save-hyperFormula-textarea {
+
+  background-color: rgb(132 255 192 / 21%);
+  color: rgb(42, 210, 1);
+}
+
+.hyperFormule-control-icon:active {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.hyperFormula-textArea:active,
+.hyperFormula-textArea:focus {
+  border: 1px solid #999;
+  outline: none;
+}
+
+::ng-deep .hyperFormula-active {
+  background-color: #e1ffe8 !important;
+  border: 1px dashed #080 !important;
+  pointer-events: none;
+}
+
+::ng-deep .hyperFormula-selected-active {
+  background-color: #ecfdff !important;
+  border: 1px dashed #93caff !important;
+}
+
+
+/* end table container */
+
+
+
+/* start handsontable handling */
+
+::ng-deep .handsontable#hotInstance {
+  overflow: visible !important;
+}
+
+
+@media print {
+
+  ::ng-deep #hotInstance.handsontable {
+    margin-top: 0px !important;
+  }
+
+  ::ng-deep #hotInstance.handsontable * {
+    height: auto !important;
+  }
+
+  ::ng-deep #topContainerTable {
+    display: none !important;
+  }
+}
+
+::ng-deep .htCore * {
+  font-family: "Cairo", sans-serif;
+}
+
+::ng-deep .htCore {
+  font-size: 16px !important;
+  text-align: right !important;
+}
+
+::ng-deep .htCenter {
+  text-align: center;
+}
+
+
+::ng-deep .ht_clone_top,
+::ng-deep .ht_master {
+  z-index: 0 !important;
+}
+
+
+::ng-deep .htRowHeaders .htCore td {
+  max-width: 200px !important;
+  cursor: cell !important;
+}
+
+
+/* hide the column menu button by default */
+::ng-deep .changeType {
+  visibility: hidden;
+}
+
+@media print {
+  ::ng-deep .changeType {
+    display: none;
+  }
+  
+}
+
+
+/* show the column menu button on hover */
+::ng-deep th .relative:hover .changeType {
+  visibility: visible;
+}
+
+
+::ng-deep .handsontable thead th {
+  background-color: #ddffe3 !important;
+  font-weight: bold;
+}
+
+::ng-deep .handsontable thead th .relative {
+  padding: 8px 5px !important;
+}
+
+::ng-deep .handsontable .wtHider {
+  background-color: #FFF !important;
+}
+
+
+@media print {
+  ::ng-deep .ht_master .wtHolder {
+    overflow: hidden !important;
+  }
+}
+
+/* end handsontable handling */
+
+/* start shared components */
+
+.par-describtion {
+  padding: 15px 0px;
+  width: 460px;
+  color: #8e8e8e;
+  font-size: 13px;
+  text-align: right;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+  direction: rtl;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  direction: rtl;
+}
+
+.form-group label {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  font-size: 14px;
+  color: #777;
+  transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.form-group input:focus+label,
+.form-group input:not(:placeholder-shown)+label {
+  top: -6px;
+  font-size: 12px;
+  color: #007bff;
+  background-color: #ffffff;
+  padding: 0 4px;
+  border-radius: 4px;
+  right: 8px;
+}
+
+/* end shared components */
+
+/*start primeng handling*/
+
+::ng-deep .ui-sidebar {
+  overflow: auto !important;
+}
+
+::ng-deep .p-sidebar .p-sidebar-header {
+  padding: 10px 20px !important;
+}
+
+::ng-deep .ui-dropdown {
+  width: 100% !important;
+  padding: 5px !important;
+}
+
+::ng-deep .ui-dropdown-trigger-icon {
+  font-size: 11px !important;
+}
+
+/*Dialog styles*/
+::ng-deep .ui-dialog-titlebar {
+  text-align: right !important;
+  display: flex !important;
+  justify-content: right !important;
+}
+
+::ng-deep .ui-dialog-content {
+  background-color: antiquewhite !important;
+  overflow: hidden !important;
+  text-align: right;
+}
+
+::ng-deep .ui-dialog-footer {
+  direction: rtl;
+}
+
+.font-family-selection ::ng-deep .ui-dropdown {
+  padding: 0px !important;
+  width: 50px !important;
+}
+
+
+::ng-deep .ui-multiselect.ui-widget {
+  border: 1px solid #888;
+  outline: none;
+  width: 100% !important;
+  padding: 5px;
+}
+
+::ng-deep .ui-multiselect-item {
+  padding: 10px !important;
+  direction: ltr !important;
+}
+
+::ng-deep .ui-widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+::ng-deep .ui-multiselect-panel .ui-multiselect-item span {
+  float: inline-end;
+}
+
+/*end primeng handling*/
+
+@media print {
+  .page-break {
+      page-break-after: always; /* أو page-break-before: always; */
+      /* يمكنك استخدام break-after أو break-before أيضًا في CSS الحديثة */
+      break-after: always;
+  }
+
+  ::ng-deep .ui-sidebar {
+      position: absolute !important;
+      overflow: initial !important;
+  }
+}
+
+
+
+/* start settings  */
+.table-settings .collabse-btn {
+  background-color: aliceblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  outline: none;
+  width: 95%;
+  padding: 12px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin: 10px auto;
+  border-radius: 5px;
+  text-align: right;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+}
+
+
+.export-dropdown {
+  background-color: antiquewhite;
+  border: none;
+  outline: none;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 140px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+}
+
+
+/* end settings */

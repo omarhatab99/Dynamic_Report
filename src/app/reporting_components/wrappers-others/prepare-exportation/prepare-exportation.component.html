@@ -1,0 +1,64 @@
+<!-- start exportation container -->
+<section class="application-exportation-placeholder" #exportationPlaceholder [class.d-none]="displayExportation">
+    <!-- <button class="btn btn-dark" (click)="handle()">Handle</button> -->
+    <div class="exportation-normal-section" *ngIf="printSettings.printingMode == 0">
+        <div class="exportation-container mt-3 mx-auto" [style.width]="printSettings.pageWidth">
+            <!-- close exportation -->
+            <span class="close-exportation" (click)="closeExportation()">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <!-- exportation options printing like landsacpe and portrait and others -->
+            <div class="exportation-container-options py-3 px-2 text-right">
+                <h5>اعدادات طباعه واستخراج الجدول.</h5>
+                <small>قم بطباع الجدول من هنا مع اختيا الاعدادات المناسبه للطباعه</small>
+                <hr>
+                <!-- options starts from here -->
+                <div class="exportation-options">
+                    <div class="row">
+                        <!-- printing mode here landscape and portrait -->
+                        <div class="col-12 text-right">
+                            <div class="printing-modes-options">
+                                <div class="mb-2 d-flex align-items-center">
+                                    <p-radioButton name="screenMode" value="0"
+                                        [(ngModel)]="selectScreenMode"></p-radioButton>
+                                    <p class="mb-0 mx-2">الوضع الافقى للصفحه (Landscape)</p>
+                                </div>
+                                <div class="mb-2 d-flex align-items-center">
+                                    <p-radioButton name="screenMode" value="1"
+                                        [(ngModel)]="selectScreenMode"></p-radioButton>
+                                    <p class="mb-0 mx-2">الوضع الرأسى للصفحه (Portrait) </p>
+                                </div>
+                            </div>
+                            <small class="text-muted">لايمكن طباعه او استخراج التقرير فى الوضع
+                                الافتراضى للصفحه.
+                            </small>
+                            <hr>
+                        </div>
+                        <!-- size of paper a4 and a3 and a5 -->
+                        <div class="col-12 text-right">
+                            <div class="mb-2 d-flex align-items-center">
+                                <p-dropdown id="paperSizechanger" [options]="printSettings.paperSizeOptions" 
+                                 [disabled]="true">
+                                </p-dropdown>
+                                <button class="btn btn-primary btn-sm mr-2" (click)="startPrinting()">طباعه</button>
+                            </div>
+                            <small class="text-muted">اختر نوع الصفحه بما يتناسب مع اوراق الطباعه
+                                لديك.
+                            </small>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content of printing here -->
+            <div class="exportation-placeholder-content" #exportationPlaceholderContent ngxPrintElement>
+                <!-- printing loader -->
+                <app-printing-loader #printingLoader [mode]="loaderMode"></app-printing-loader>
+                <!-- content will rendered here -->
+                <div class="placeholder-content" #placeholderContent>
+                    <!-- <app-nested-pyramid-grid-wrapper></app-nested-pyramid-grid-wrapper> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

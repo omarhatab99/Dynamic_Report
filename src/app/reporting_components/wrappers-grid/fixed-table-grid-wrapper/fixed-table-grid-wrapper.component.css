@@ -1,0 +1,75 @@
+
+.fixedtable-box-container .details-report-table {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.fixedtable-box-container .details-report-table .fixed-table {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.fixedtable-box-container .details-report-table table, th, td {
+    border: 1px solid #999;
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+.fixedtable-box-container .details-table {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    min-width: fit-content;
+    z-index: 5;
+}
+
+td:focus-visible {
+    outline: 2px dashed rgb(94, 59, 249) !important;
+}
+
+.icon-container {
+    background-color: #eaeaea;
+    border: 1px solid #CCC;
+    position: absolute;
+    opacity: 0;
+    transition: all 0.4s linear;
+    padding: 5px;
+    border-radius: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1000;
+}
+
+.icon-container .element-remove-icon,.icon-container .element-move-icon {
+    font-size: 11px;
+    width: 18px;
+    height: 18px;
+    border: 1px dashed #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+
+.icon-container .element-remove-icon {
+    background-color: #fe7a7a70;
+}
+
+
+.icon-container .element-move-icon:hover {
+    background-color: #dcffd0;
+    display: block;
+}
+
+.fixedtable-box-container:hover .icon-container {
+    opacity: 1;
+    transition: all 0.4s ease-in-out;
+}
+
+.fixedtable-box-container:active .icon-container {
+    opacity: 1;
+    transition: all 0.4s ease-in-out;
+}

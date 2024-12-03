@@ -1,0 +1,58 @@
+<!-- hotTable -->
+<div class="handsontable-nested-container" #handsontableNestedContainer>
+    <div class="nested-handsontable-configuration-container text-right" *ngIf="showHandsontableConfiguration">
+
+        <span class="configuration-btn mx-1" (click)="nestedOptionsDialogDisplay()">
+            <span class="mx-2">
+                <i class="fa-solid fa-gear"></i>
+            </span>
+            اعدادات الجدول
+        </span>
+
+        <!-- <span class="pyramid-btn mx-1" (click)="displayPyramidGrid()" *ngIf="hasPyramidGrid">
+            <span class="mx-2">
+                <i class="fa-brands fa-buromobelexperte"></i>
+            </span>
+            وضع الاستخراج
+        </span> -->
+
+    </div>
+    <hot-table [hotId]="handsontableSettings.handsontable_id" [settings]="handsontableSettings.hotSettings"
+        [language]="handsontableSettings.language" [data]="handsontableSettings.itemSource"
+        [colHeaders]="handsontableSettings.rowHeader" #hotTable></hot-table>
+</div>
+
+
+<p-dialog [(visible)]="_nestedOptionsDialogDisplay" #nestedOpts [rtl]="true" closeIcon="" [modal]="true"
+    [style]="{ width: '700px', zIndex: 1000 }" *ngIf="showHandsontableConfiguration">
+    <p-header>
+        <p class="mb-0">اعدادات الجدول (Nested Grid Options)</p>
+    </p-header>
+    <div class="dialog-content">
+        <div class="row">
+            <div class="col-12 pt-1 pb-1 px-3" style="width: 350px">
+                <div class="par-describtion">
+                    يمكنك التحكم فى جميع اعدادات الجدول من هنا.
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="nested-handsontable-configurations">
+                    <div class="mb-2 d-flex align-items-center" *ngIf="showRowHeader">
+                        <p-checkbox name="rowheader" [value]="true" [(ngModel)]="table_state" [binary]="true"
+                            (onChange)="onTableToggleState($event)"></p-checkbox>
+                        <p class="mb-0 mx-2"> اجعل جميع الصفوف مفتوحه.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <button type="button" class="btn btn-primary btn-sm">
+            حفظ الاعدادات
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="nestedOptionsDialogClose()">
+            تجاهل
+        </button>
+    </p-footer>
+
+</p-dialog>

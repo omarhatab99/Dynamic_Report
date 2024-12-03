@@ -1,0 +1,98 @@
+.exportation-section {
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.export-div {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 10px;
+}
+
+.export-div-container {
+    background-color: #FFF;
+    border: 1px dashed #cbcbcb;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.export-div .page-none-event {
+    background-color: #88ffa326;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1500000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 90px;
+    color: #00000069;
+}
+
+@media print {
+    .export-div .page-none-event {
+        display: none;
+    }
+}
+
+.export-div-container .div-footer {
+    background-color: #f0f0f0;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 12mm;
+}
+
+
+.export-div-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.watermark{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 990;
+}
+
+.watermark h2 {
+    font-size: 70px;
+    font-weight: bold;
+    color: #00000026;
+    transform: rotate(-45deg);
+
+}
+
+.table-data-export {
+    background-color: #cbcbcb;
+    width: 95%;
+    margin: 150px auto;
+}
+
+@media print {
+    .page-break {
+        page-break-after: always; /* أو page-break-before: always; */
+        break-after: always;
+    }
+
+    ::ng-deep .ui-sidebar {
+        position: absolute !important;
+        overflow: initial !important;
+    }
+
+}
+

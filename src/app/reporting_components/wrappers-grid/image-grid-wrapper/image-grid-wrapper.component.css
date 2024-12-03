@@ -1,0 +1,88 @@
+.image-box-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100% !important;
+}
+
+.grid-content {
+    height: 100% !important;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.icon-container {
+    background-color: #eaeaea;
+    border: 1px solid #CCC;
+    position: absolute;
+    opacity: 0;
+    transition: all 0.4s linear;
+    padding: 5px;
+    border-radius: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1000;
+}
+
+.icon-container .element-remove-icon,.icon-container .element-image-edit-icon,.icon-container .element-move-icon {
+    font-size: 11px;
+    width: 18px;
+    height: 18px;
+    border: 1px dashed #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.icon-container .element-image-edit-icon {
+    background-color: #ecfc7369;
+}
+
+.icon-container .element-remove-icon {
+    background-color: #fe7a7a70;
+}
+
+
+.icon-container .element-move-icon:hover {
+    background-color: #dcffd0;
+    display: block;
+}
+
+.image-box-container:hover .icon-container {
+    opacity: 1;
+    transition: all 0.4s ease-in-out;
+}
+
+.image-box-container:active .icon-container {
+    opacity: 1;
+    transition: all 0.4s ease-in-out;
+}
+
+/*start image dialog*/
+
+.upload-image-container {
+    gap: 15px;
+}
+
+.upload-image-container .upload-image-box {
+    background-color: #FFF;
+    border: 1px dashed #DDD;
+    width: 70%;
+    height: 170px;
+}
+
+/*end image dialog*/
+
+.par-describtion {
+    padding: 15px 0px;
+    width: 460px;
+    color: #8e8e8e;
+    font-size: 13px;
+    text-align: right;
+}

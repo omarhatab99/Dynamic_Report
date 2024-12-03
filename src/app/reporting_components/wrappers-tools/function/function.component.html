@@ -1,0 +1,33 @@
+<a class="collabse-anchor animate__animated animate__fadeInRight my-2" #functionElement data-toggle="collapse"
+    [href]="'#'+functionId" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <div class="d-flex justify-content-between align-items-center">
+        <span>
+            داله
+            <i class="fa-solid fa-percent"></i>
+        </span>
+        <span class="mr-2" (click)="confirmationDeleteFunction()">
+            <i class="fa-regular fa-square-minus text-danger" style="font-size: 15px;"></i>
+        </span>
+    </div>
+</a>
+
+<div class="collapse" [id]="functionId" #functionCollabse>
+    <div class="filter-dynamic">
+        <div class="filter-columns-select">
+            <label for="filterColumn" class="text-right w-100">اختر الاعمدة </label>
+            <p-dropdown id="filterColumn" dir="rtl" [options]="itemSource_options" [(ngModel)]="filterSelectedColumn"></p-dropdown>
+        </div>
+        <div class="operation-select text-right my-2" *ngIf="filterOperationShow">
+            <p-multiSelect [options]="operations" [(ngModel)]="selectedfunction">
+                <ng-template let-selectedfunction pTemplate="selectedItems">
+                    <span class="selected-item-badge" *ngIf="_selectedFunction.length == 0">اختر داله</span>
+                    <span class="selected-item-badge" *ngFor="let function of selectedfunction">{{function.name}}</span>
+                </ng-template>
+                <ng-template let-operation let-i="index" pTemplate="item">
+                    {{i}}
+                    <div style="font-size:14px;float:right;margin-top:4px">{{operation.label}}</div>
+                </ng-template>
+            </p-multiSelect>
+        </div>
+    </div>
+</div>

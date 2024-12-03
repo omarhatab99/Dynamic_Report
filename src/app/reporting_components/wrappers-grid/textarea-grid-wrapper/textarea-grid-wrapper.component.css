@@ -1,0 +1,135 @@
+.text-box-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100% !important;
+}
+
+.grid-content {
+    height: 100% !important;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.icon-container {
+    background-color: #eaeaea;
+    border: 1px solid #CCC;
+    position: absolute;
+    opacity: 0;
+    transition: all 0.4s linear;
+    padding: 5px;
+    border-radius: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1000;
+}
+
+.icon-container .element-remove-icon,.icon-container .element-text-edit-icon,.icon-container .element-move-icon {
+    font-size: 11px;
+    width: 18px;
+    height: 18px;
+    border: 1px dashed #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.icon-container .element-text-edit-icon {
+    background-color: #ecfc7369;
+}
+
+.icon-container .element-remove-icon {
+    background-color: #fe7a7a70;
+}
+
+
+.icon-container .element-move-icon:hover {
+    background-color: #dcffd0;
+    display: block;
+}
+
+.text-box-container:hover .icon-container {
+    opacity: 1;
+    transition: all 0.4s ease-in-out;
+}
+
+.text-box-container:active .icon-container {
+    opacity: 1;
+    transition: all 0.4s ease-in-out;
+}
+
+
+.text-editable {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: transparent 0px 0px 0px 1px;
+    transition: background 0.3s linear;
+    text-align: center;
+    z-index: 500 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0px 15px !important;
+}
+
+
+.text-editable:hover:not(:focus) {
+    background-color: transparent;
+}
+
+.text-editable:focus {
+    background-color: transparent;
+    outline: none;
+}
+
+/* start edit angular editor */
+.editor-container {
+    background-color: #FFF;
+}
+
+::ng-deep .angular-editor-wrapper .angular-editor-textarea {
+    min-height: 200px !important;
+    resize: none !important;
+    outline: none !important;
+    border: 1px dashed #d0d0d0 !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+::ng-deep .angular-editor-wrapper {
+    direction: rtl !important;
+}
+
+::ng-deep .angular-editor-toolbar {
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+::ng-deep .angular-editor-toolbar .select-font {
+    width: 150px !important;
+}
+
+/* end edit angular editor */
+/*start dialog*/
+::ng-deep .ui-dialog-titlebar {
+    text-align: right;
+}
+
+::ng-deep .ui-dialog-content {
+    background-color: antiquewhite !important;
+}
+
+
+::ng-deep .ui-dialog-footer {
+    direction: rtl;
+}
+
+/*end dialog*/
+
+/*start image dialog*/
+
